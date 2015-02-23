@@ -31,6 +31,7 @@
 + (id)isKindOfClass:(Class)cls;
 + (id)checkWithSelector:(SEL)selector onObject:(id)anObject;
 + (id)checkWithBlock:(BOOL (^)(id obj))block;
++ (id)checkDictionaryContainsEntries:(NSDictionary *)expectedDictionary;
 
 // manipulating arguments
 
