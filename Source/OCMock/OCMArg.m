@@ -80,6 +80,17 @@
 	return [[[OCMBlockConstraint alloc] initWithConstraintBlock:block] autorelease];
 }
 
++ (id)checkDictionaryContainsEntries:(NSDictionary *)expectedDictionary
+{
+  NSArray *expectedKeys = [expectedDictionary allKeys];
+  NSArray *expectedValues = [expectedDictionary objectsForKeys:expectedKeys
+                                                notFoundMarker:[NSNull null]];
+  return [self checkWithBlock:^(id actual) {
+      return [expectedValues isEqualToArray:[actual objectsForKeys:expectedKeys
+                                                    notFoundMarker:[NSNull null]]];
+  }];
+}
+
 + (id *)setTo:(id)value
 {
 	return (id *)[[[OCMPassByRefSetter alloc] initWithValue:value] autorelease];
